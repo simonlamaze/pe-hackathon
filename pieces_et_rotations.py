@@ -107,7 +107,7 @@ def Transform(piece,T,dico):
     t1= np.zeros(k)
     t2= [i for i in t2 if i != 2]
     t1[list(dico).index(piece)]=1
-    return np.concatenate((t1,t2))
+    return np.concatenate((t1,t2),axis=None)
     
 
 def BigT(dico):
@@ -115,12 +115,12 @@ def BigT(dico):
     for key, value in dico.items():
         for t in value:
          Input.append(Transform(key, t, dico))
-    print(Input)
-    return next(covers_bool(np.array(Input)))
+    return np.array(Input)
 
-solutions = BigT(Dicotableaux)
+solutions = covers_bool(BigT(Dicotableaux))
 
-print(solutions)
+
+print(next(solutions))
 
 
         
