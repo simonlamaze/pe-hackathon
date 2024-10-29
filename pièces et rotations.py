@@ -85,12 +85,12 @@ def demi_tourv(shape): # retourne verticalement en passant par la transposée
     return np.transpose(S)
 
 def sym_rot(shape):
-    L=[demi_tourh(demi_tourv(shape)),demi_tourv(shape),demi_tourh(shape),shape]
+    L=[demi_tourh(demi_tourv(shape)),demi_tourv(shape),demi_tourh(shape),shape] # IL manque les transposées
     Liste=[]
     for T in L :
         Liste.append (np.transpose(T))
         Liste.append (T)
-    return Liste
+    return Liste  # on a potentiellement des répétitions
 
 
 Dicosymrot={}
@@ -98,6 +98,33 @@ for key in RAW_SHAPES :
     Dicosymrot[key]= sym_rot(np.array(RAW_SHAPES[key]))
 
 print(Dicosymrot)
+
+
+#######
+
+def configuration (shape, case , tableau ): # dim(shape)=2
+    n, p =shape.shape
+    N,P= tableau.shape
+    if case[0]+n > N or case[1]+p > P :
+        return none  # si la pièce ne rentre pas
+    else : 
+        T = tableau 
+        T[case[0],case[0]+n:,[case[1],case[1]+p:]=shape
+    return T
+
+
+tableau = np.zeros(12,5)
+Dicotableaux={}
+for key in Dicosymrot:
+    Dicotableaux[key]=[]
+    for shape in Dicosymrot[key]:
+        for i in range (12):
+            for j in range (5):
+                Dicotableaux[key].append(configuration (shape, [i,j] , tableau ))
+
+return Dicotableaux
+        
+
     
     
 
