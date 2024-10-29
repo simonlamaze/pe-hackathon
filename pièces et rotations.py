@@ -1,5 +1,6 @@
 import numpy as numpy
-import exact cover
+import xcover
+
 
 
 RAW_SHAPES = {   
@@ -71,28 +72,27 @@ print(Dicotableaux)
 
 ######
 
-diconum= {  "F": 1
-    "I": 2
-    "L": 3
-    "N": 4
-    "P": 5
-    "T": 6
-    "U": 7
-    "V": 8
-    "W": 9
-    "X": 10
-    "Y": 11
-    "Z": 12
+diconum= {  "F": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]1
+    "I": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "L": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "N": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    "P": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+    "T": [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+    "U": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+    "V": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+    "W": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+    "X": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+    "Y": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+    "Z": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 }
 
 
 def liste ( piece , tableau ):
-    L=[]
-    L.append (diconum[piece])
+    L=diconum[piece]
     n,p = tableau .shape
     for i in range (n):
         for j in range (p):
-            L.append(tableau[-i,j])
+            L.append(tableau[i,j])
     return L
 # retourne la liste correcte d'une pièce et d'un tableau associé
 Liste_config =[]
@@ -102,8 +102,14 @@ for key in dicotableaux:
         Liste_config.append(liste ( key , tableau ))
 
 ####
+dico_config={}
+for i in range(len(Liste_config)):
+    dico_config[i]=Liste_config[i]
+solutions = covers_bool(dico_config)
+solutions = covers_bool(problem)
+first = next(solutions)
+print(first)
 
-solutions = covers_bool(Liste_config)
 
 
 
