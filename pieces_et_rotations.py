@@ -87,12 +87,11 @@ diconum= {  "F": 1,
 
 
 def liste ( piece , tableau ):
-    L=[]
-    L.append (diconum[piece])
+    L=diconum[piece]
     n,p = tableau .shape
     for i in range (n):
         for j in range (p):
-            L.append(tableau[-i,j])
+            L.append(tableau[i,j])
     return L
 # retourne la liste correcte d'une pièce et d'un tableau associé
 Liste_config =[]
