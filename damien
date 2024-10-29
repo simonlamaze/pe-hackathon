@@ -1,5 +1,6 @@
 import numpy as np
 def solver(dico,board):
+    piece=0
     for k in len(dico) :
         if piece==12:
             break
