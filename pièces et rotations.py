@@ -106,14 +106,14 @@ def configuration (shape, case , tableau ): # dim(shape)=2
     n, p =shape.shape
     N,P= tableau.shape
     if case[0]+n > N or case[1]+p > P :
-        return none  # si la pièce ne rentre pas
+        return None  # si la pièce ne rentre pas
     else : 
         T = tableau 
-        T[case[0],case[0]+n:,[case[1],case[1]+p:]=shape
+        T[case[0]:case[0]+n,case[1]:case[1]+p]=shape
     return T
 
 
-tableau = np.zeros(12,5)
+tableau = np.zeros((12,5))
 Dicotableaux={}
 for key in Dicosymrot:
     Dicotableaux[key]=[]
@@ -122,7 +122,7 @@ for key in Dicosymrot:
             for j in range (5):
                 Dicotableaux[key].append(configuration (shape, [i,j] , tableau ))
 
-return Dicotableaux
+print(Dicotableaux)
         
 
     
