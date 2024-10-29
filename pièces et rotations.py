@@ -1,7 +1,6 @@
 import numpy as numpy
-import xcover
-
-
+import exact cover
+from xcover import covers_bool
 
 RAW_SHAPES = {   
 "F": [[1, 1, 0], [0, 1, 1], [0, 1, 0]],
@@ -97,19 +96,25 @@ def liste ( piece , tableau ):
 # retourne la liste correcte d'une pièce et d'un tableau associé
 Liste_config =[]
 
-for key in dicotableaux:
-    for tableau in dicotableaux[key]:
-        Liste_config.append(liste ( key , tableau ))
+# for key in dicotableaux:
+#     for tableau in dicotableaux[key]:
+#         Liste_config.append(liste ( key , tableau ))
 
 ####
-dico_config={}
-for i in range(len(Liste_config)):
-    dico_config[i]=Liste_config[i]
-solutions = covers_bool(dico_config)
-solutions = covers_bool(problem)
-first = next(solutions)
-print(first)
+def Transform(piece,T,dico):
+    k = len(dico)
+    l = np.sum(T!=2)
+    t1= np.zeros(k)
+    t2=T.reshape((1,-1))[0]
+    t2= [i for i in t2 if i != 2]
+    t1[list(dico).index(piece)]=1
+    return np.concatenate((t1,t2))
 
+def BigT(dico):
+    Input = [Transform(key, t, dico) for key, value in dico.items() for t in value]
+    return next(covers_bool(Input)
+
+solutions = BigT(dicotableaux)
 
 
 
