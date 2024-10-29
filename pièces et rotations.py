@@ -1,62 +1,6 @@
 import numpy as numpy
 import exact cover
 
-N = np.array([0,1])
-S = np.array([0,-1])
-0 = np.array([-1,0])
-E = np.array([1,0])
-
-def rot_q_droite (piece):
-    .
-
-def rot_180 (piece):
-
-def rot_q_droite (dir):
-    if dir==N :
-        return O
-    elif dir==S :
-        return E
-    elif dir==O :
-        return S
-    elif dir==E :
-        return N
-
-def rot_180_N (dir):
-    if dir==N :
-        return N
-    elif dir==S :
-        return S
-    elif dir==O :
-        return E
-    elif dir==E :
-        return O
-
-def rot_180_O (dir):
-    if dir==N :
-        return S
-    elif dir==S :
-        return N
-    elif dir==O :
-        return O
-    elif dir==E :
-        return E
-
-
-
-dicopiecesD= {  "F": [N,E,O,N,O],
-    "I": [N,N,N,N],
-    "L": [O,N,N,N],
-    "N": [E,S,E,E],
-    "P": [N,E,N,O],
-    "T": [N,N,O,E,E],
-    "U": [N,E,E,N],
-    "V": [N,N,E,E],
-    "W": [S,E,S,E],
-    "X": [N,O,E,E,O,N],
-    "Y": [E,N,S,E,E],
-    "Z": [E,S,S,E],
-}
-
 
 RAW_SHAPES = {   
 "F": [[1, 1, 0], [0, 1, 1], [0, 1, 0]],
@@ -123,6 +67,47 @@ for key in Dicosymrot:
                 Dicotableaux[key].append(configuration (shape, [i,j] , tableau ))
 
 print(Dicotableaux)
+
+
+######
+
+diconum= {  "F": 1
+    "I": 2
+    "L": 3
+    "N": 4
+    "P": 5
+    "T": 6
+    "U": 7
+    "V": 8
+    "W": 9
+    "X": 10
+    "Y": 11
+    "Z": 12
+}
+
+
+def liste ( piece , tableau ):
+    L=[]
+    L.append (diconum[piece])
+    n,p = tableau .shape
+    for i in range (n):
+        for j in range (p):
+            L.append(tableau[-i,j])
+    return L
+# retourne la liste correcte d'une pièce et d'un tableau associé
+Liste_config =[]
+
+for key in dicotableaux:
+    for tableau in dicotableaux[key]:
+        Liste_config.append(liste ( key , tableau ))
+
+####
+
+solutions = covers_bool(Liste_config)
+
+
+
+
         
 
     
