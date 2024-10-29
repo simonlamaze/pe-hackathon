@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from xcover import covers_bool
 n=10
 T = np.zeros((n,n))
 T[5:,5:]=2
@@ -14,6 +15,9 @@ def Transform(piece,T,dico):
     return np.concatenate((t1,t2))
 
 print(Transform("Z",T,{"U":1,"Z":4}))
-    
+
+def BigT(dico):
+    Input = [Transform(key, t, dico) for key, value in dico.items() for t in value]
+    return next(covers_bool(Input)
 
 
