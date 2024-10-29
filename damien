@@ -1,0 +1,46 @@
+import numpy as np
+def solver(dico,board):
+    for k in len(dico) :
+        if piece==12:
+            break
+        if dico[k][0]==1:
+            tab=np.array(dico[k])
+            solution=[]
+            solution.append(k)
+            piece=1
+            for suite in len(dico):
+                while piece<12:
+                    if dico[suite][piece]==1:
+                        tab1=np.array(dico[suite])+tab
+                        res = np.equal(tab, 2)
+                        if not np.any(res):
+                            tab=tab1
+                            solution.append(suite)
+                            piece=piece+1
+    a=board.shape
+    pretty=np.zeros(1,board.size)
+    board.reshape(1,board.size)
+    for tetrix in solution:
+        p=-12
+        for k in range(12,72):
+            while board[k+p]!=0:
+                p+=1
+            if dico[tetrix][k]==1:
+                pretty[k+p]=tetrix
+    pretty.reshape(a[0],a[1])
+    return(pretty)
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
