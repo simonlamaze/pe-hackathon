@@ -14,7 +14,7 @@ def Transform(piece,T,dico):
     t1[list(dico).index(piece)]=1
     return np.concatenate((t1,t2))
 
-print(Transform("Z",T,{"U":1,"Z":4}))
+
 
 def BigT(dico):
     Input = [Transform(key, t, dico) for key, value in dico.items() for t in value]
