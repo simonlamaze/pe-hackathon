@@ -5,6 +5,7 @@ n=10
 T = np.zeros((n,n))
 T[5:,5:]=2
 T[-1,-1]=1
+
 def Transform(piece,T,dico):
     k = len(dico)
     l = np.sum(T!=2)
